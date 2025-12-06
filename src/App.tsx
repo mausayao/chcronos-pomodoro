@@ -6,7 +6,7 @@ import { Heading } from './components/Heading';
 export function App() {
     return (
         <>
-        <Heading/>
+        <Heading> Teste </Heading>
         <p>
             teste de parágrafo
         </p>
