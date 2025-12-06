@@ -1,5 +1,15 @@
-function App() {
-    return <h1>Olá Mundo</h1>;
-}
+import './styles/theme.css';
+import './styles/global.css';
 
-export { App }
+import { Heading } from './components/Heading';
+
+export function App() {
+    return (
+        <>
+        <Heading/>
+        <p>
+            teste de parágrafo
+        </p>
+        </>
+    );
+}
