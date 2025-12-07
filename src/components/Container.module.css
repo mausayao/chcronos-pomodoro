@@ -1,0 +1,13 @@
+.container {
+  max-width: 98rem;
+  margin: 0 auto;
+}
+
+.container-fluid {
+  background-color: red;
+}
+
+.content {
+  background: blue;
+  margin: 3.2rem;
+}
