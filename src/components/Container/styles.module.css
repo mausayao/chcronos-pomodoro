@@ -4,10 +4,9 @@
 }
 
 .container-fluid {
-  background-color: red;
+  margin: auto;
 }
 
 .content {
-  background: blue;
   margin: 3.2rem;
 }
