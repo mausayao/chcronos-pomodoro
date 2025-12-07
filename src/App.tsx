@@ -1,20 +1,17 @@
 import './styles/theme.css';
 import './styles/global.css';
+import { Container } from './components/Container';
 
-import { Heading } from './components/Heading';
-import { TimerIcon } from 'lucide-react';
 
 export function App() {
     return (
         <>
-        <Heading> Teste 
-            <button>
-                <TimerIcon/>
-            </button>
-        </Heading>
-        <p>
-            teste de parágrafo
-        </p>
+        <Container>
+            <section>Logo</section>
+        </Container>
+        <Container>
+            <section>Menu</section>
+        </Container>
         </>
     );
 }
