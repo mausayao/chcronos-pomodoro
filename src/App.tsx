@@ -5,6 +5,7 @@ import { Container } from "./components/Container";
 import { Logo } from "./components/Logo";
 import { Menu } from "./components/Menu";
 import { CountDown } from "./components/CountDown";
+import { Input } from "./components/Input";
 
 export function App() {
   return (
@@ -19,6 +20,27 @@ export function App() {
 
       <Container>
         <CountDown />
+      </Container>
+
+      <Container>
+        <form className="form" action="">
+          <div className="formRow">
+            <Input id="formId" labelText="task" type="text" />
+          </div>
+
+          <div className="formRow">
+            <p>Lorem ipsum dolor sit amet.</p>
+          </div>
+
+          <div className="formRow">
+            <p>Ciclor</p>
+            <p>00000000</p>
+          </div>
+
+          <div className="formRow">
+            <button>enviar</button>
+          </div>
+        </form>
       </Container>
     </>
   );
