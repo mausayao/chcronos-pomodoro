@@ -7,12 +7,14 @@ import { useRef } from "react";
 import type { TaskModel } from "../../models/TaskModel";
 import { useTaskContext } from "../../contexts/TaskContext/UseTaskContext";
 import { getNextCycle } from "../../utils/getNextCycle";
+import { nextCycleType } from "../../utils/getNextCycleType";
 
 export function MainForm() {
   const { state, setState } = useTaskContext();
   const taskNameInput = useRef<HTMLInputElement>(null);
 
   const nextCycle = getNextCycle(state.currentCycle);
+  const cycleType = nextCycleType(nextCycle);
 
   function handelCreateNewTask(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -33,7 +35,7 @@ export function MainForm() {
       completeDate: null,
       interruptDate: null,
       duration: 1,
-      type: "workTime",
+      type: cycleType,
     };
 
     const secondsRemaing = newTask.duration * 60;
