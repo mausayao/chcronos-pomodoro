@@ -1,21 +1,25 @@
 import type { TaskModel } from "../../models/TaskModel";
 
-export declare enum TaskActionTypes {
-    START_ACTION = "START_ACTION",
-    INTERRUPT_TASK = "INTERRUPT_TASK",
-    RESET_STATE = "RESET_STATE"
-}
+export const TaskActionTypes = {
+  START_ACTION: "START_ACTION",
+  INTERRUPT_TASK: "INTERRUPT_TASK",
+  RESET_STATE: "RESET_STATE",
+} as const;
 
-export type TaskActionWithPayload = | {
-    type: TaskActionTypes.START_ACTION;
-    payload: TaskModel
-} | {
-    type: TaskActionTypes.INTERRUPT_TASK;
-    payload: TaskModel
-}
+export type TaskActionTypes =
+  (typeof TaskActionTypes)[keyof typeof TaskActionTypes];
 
-export type TaskActionWithoutPayload = {
-    type: TaskActionTypes.RESET_STATE
-}
+export type TaskActionWithPayload = {
+  type: typeof TaskActionTypes.START_ACTION;
+  payload: TaskModel;
+};
 
-export type TaskActionModel = | TaskActionWithPayload | TaskActionWithoutPayload
+export type TaskActionWithoutPayload =
+  | {
+      type: typeof TaskActionTypes.RESET_STATE;
+    }
+  | {
+      type: typeof TaskActionTypes.INTERRUPT_TASK;
+    };
+
+export type TaskActionModel = | TaskActionWithPayload | TaskActionWithoutPayload;
