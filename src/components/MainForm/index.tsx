@@ -8,6 +8,7 @@ import type { TaskModel } from "../../models/TaskModel";
 import { useTaskContext } from "../../contexts/TaskContext/UseTaskContext";
 import { getNextCycle } from "../../utils/getNextCycle";
 import { nextCycleType } from "../../utils/getNextCycleType";
+import { formatCountDown } from "../../utils/formatCountDown";
 
 export function MainForm() {
   const { state, setState } = useTaskContext();
@@ -47,7 +48,7 @@ export function MainForm() {
         activeTask: newTask,
         currentCycle: nextCycle,
         secondsRemaing,
-        formattedSecondsRemaing: "00:00",
+        formattedSecondsRemaing: formatCountDown(secondsRemaing),
         tasks: [...prevState.tasks, newTask],
       };
     });
