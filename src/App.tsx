@@ -3,11 +3,14 @@ import "./styles/global.css";
 
 import { Home } from "./pages/home";
 import { TaskContextProvider } from "./contexts/TaskContext/TaskContextProvider";
+import { Message } from "./components/Message";
 
 export function App() {
   return (
     <TaskContextProvider>
-      <Home />
+      <Message>
+        <Home />
+      </Message>
     </TaskContextProvider>
   );
 }
