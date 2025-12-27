@@ -1,14 +1,14 @@
-import { TimerIcon } from 'lucide-react';
-import styles from './styles.module.css';
-
+import { TimerIcon } from "lucide-react";
+import styles from "./styles.module.css";
+import { RouterLink } from "../RouterLink";
 
 export function Logo() {
-    return (
-        <div className={styles.logo}>
-            <a className={styles.logoLink} href="#">
-                <TimerIcon/>
-                 Chronos
-            </a>
-        </div>
-    );
+  return (
+    <div className={styles.logo}>
+      <RouterLink className={styles.logoLink} href="/">
+        <TimerIcon />
+        Chronos
+      </RouterLink>
+    </div>
+  );
 }
