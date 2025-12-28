@@ -5,17 +5,32 @@ import { taskReducer } from "./TaskReducer";
 import { TimeWorkerManager } from "../../worker/TimeWorkerManager";
 import { TaskActionTypes } from "./TaskAction";
 import { loadSound } from "../../utils/loadSound";
+import type { TaskStateModel } from "../../models/TaskStateModel";
 
 type TaskContextProviderProps = {
   children: React.ReactNode;
 };
 
 export function TaskContextProvider({ children }: TaskContextProviderProps) {
-  const [state, dispatch] = useReducer(taskReducer, initialTaskState);
+  const [state, dispatch] = useReducer(taskReducer, initialTaskState, () => {
+    const stateInStorage = localStorage.getItem("state");
+
+    if (stateInStorage === null) return initialTaskState;
+
+    const parsedState = JSON.parse(stateInStorage) as TaskStateModel;
+
+    return {
+      ...parsedState,
+      formattedSecondsRemaing: "00:00",
+      activeTask: null,
+      secondsRemaing: 0,
+    };
+  });
   const worker = TimeWorkerManager.getInstance();
   const loadSoundEffect = useRef<ReturnType<typeof loadSound> | null>(null);
 
   useEffect(() => {
+    localStorage.setItem("state", JSON.stringify(state));
     if (!state.activeTask) {
       worker.terminate();
     }
