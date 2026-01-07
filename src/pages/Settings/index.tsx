@@ -8,8 +8,10 @@ import { Button } from "../../components/Button";
 import { SaveIcon } from "lucide-react";
 import { useRef } from "react";
 import { showMessage } from "../../adapters/messageAdapter";
+import { useTaskContext } from "../../contexts/TaskContext/UseTaskContext";
 
 export function Settings() {
+  const { state, dispatch } = useTaskContext();
   const workTime = useRef<HTMLInputElement>(null);
   const shotBreakTime = useRef<HTMLInputElement>(null);
   const longBreakTime = useRef<HTMLInputElement>(null);
@@ -49,6 +51,17 @@ export function Settings() {
       });
       return;
     }
+
+    dispatch({
+      type: "CHANGE_SETTINGS",
+      payload: {
+        workTime: workTimeValue,
+        shortBreakTime: shotBreakTimeValue,
+        longBreakTime: longBreakTimeValue,
+      },
+    });
+
+    showMessage.success("Configurações salva com sucesso!");
   }
   return (
     <>
@@ -65,13 +78,21 @@ export function Settings() {
         <Container>
           <form action="" onSubmit={handleConfiguration} className={style.form}>
             <div className={style.formRow}>
-              <Input id="workTime" labelText="foco" ref={workTime} />
+              <Input
+                id="workTime"
+                labelText="foco"
+                ref={workTime}
+                type="number"
+                defaultValue={state.config.workTime}
+              />
             </div>
             <div className={style.formRow}>
               <Input
                 id="shortBreakTime"
                 labelText="Descanso curto"
                 ref={shotBreakTime}
+                type="number"
+                defaultValue={state.config.shortBreakTime}
               />
             </div>
             <div className={style.formRow}>
@@ -79,6 +100,8 @@ export function Settings() {
                 id="longBreakTime"
                 labelText="Descanso longo"
                 ref={longBreakTime}
+                type="number"
+                defaultValue={state.config.longBreakTime}
               />
             </div>
             <Button
